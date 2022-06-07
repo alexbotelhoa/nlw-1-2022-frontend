@@ -5,18 +5,25 @@ import { Loading } from "../../Loading";
 import { CloseButton } from "../../CloseButton";
 import { FeedbackType, feedbackTypes } from "..";
 import { ScreenshotButton } from "../ScreenshotButton";
+import FeedbackRepository from "../../../repositories/FeedbackRepository";
 
-import { api } from "../../../libs/api";
+interface IFeedback {
+  type: string,
+  comment: string,
+  screenshot?: string,
+}
 
 interface FeedbackContentStepProps {
   feedbackType: FeedbackType;
   onFeedbackSent: () => void;
+  onFeedbackCreate: (data: any) => void;
   onFeedbackRestartRequested: () => void;
 }
 
 export function FeedbackContentStep({
   feedbackType,
   onFeedbackSent,
+  onFeedbackCreate,
   onFeedbackRestartRequested
 }: FeedbackContentStepProps) {
   const [comment, setComment] = useState<string>('');
@@ -29,11 +36,15 @@ export function FeedbackContentStep({
     event.preventDefault();
     setIsSendFeedback(true);
 
-    await api.post('/feedbacks', {
+    const feedback = {
       type: feedbackType,
       comment,
       screenshot
-    });
+    } as IFeedback
+
+    const feedbackRepository = new FeedbackRepository;
+    let response = await feedbackRepository.create(feedback);
+    onFeedbackCreate(response);
 
     setIsSendFeedback(false);
     onFeedbackSent();

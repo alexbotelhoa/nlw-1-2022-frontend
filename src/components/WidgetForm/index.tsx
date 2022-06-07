@@ -34,9 +34,19 @@ export const feedbackTypes = {
 
 export type FeedbackType = keyof typeof feedbackTypes;
 
-export function WidgetForm() {
+interface WidgetFormProps {
+  onFeedbackCreate: (feedback: any) => void;
+}
+
+export function WidgetForm({
+  onFeedbackCreate,
+}: WidgetFormProps) {
   const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null);
   const [feedbackSent, setFeedbackSent] = useState(false);
+
+  function handleCreateFeedback(feedback: any) {
+    onFeedbackCreate(feedback)
+  }
 
   function handleRestartFeedback() {
     setFeedbackSent(false);
@@ -53,6 +63,7 @@ export function WidgetForm() {
             <FeedbackContentStep
               feedbackType={feedbackType}
               onFeedbackSent={() => setFeedbackSent(true)}
+              onFeedbackCreate={(feedback) => handleCreateFeedback(feedback)}
               onFeedbackRestartRequested={handleRestartFeedback}
             />
           )}
