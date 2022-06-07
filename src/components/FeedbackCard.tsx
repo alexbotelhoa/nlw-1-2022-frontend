@@ -8,6 +8,7 @@ export interface InfoCard {
   comment: string,
   screenshot: string,
   createdAt: string,
+  updatedAt: string,
 }
 
 interface FeedbackCardProps {

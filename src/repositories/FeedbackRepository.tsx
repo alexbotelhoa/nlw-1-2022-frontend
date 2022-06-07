@@ -3,17 +3,15 @@ import Repository from "./Repository";
 interface IFeedback {
     type: string,
     comment: string,
-    screenshot?: string,
+    screenshot: string | null,
 }
 
 class FeedbackRepository extends Repository {
     async list() {
-        console.log("list")
         return await super.get('/feedback');
     }
 
     async create(data: IFeedback) {
-        console.log("create")
         return await super.post('/feedback', data);
     }
 
@@ -26,7 +24,6 @@ class FeedbackRepository extends Repository {
     }
 
     async delete(feedback_id: string) {
-        console.log("delete")
         return await super.delete('/feedback/' + feedback_id);
     }
 }

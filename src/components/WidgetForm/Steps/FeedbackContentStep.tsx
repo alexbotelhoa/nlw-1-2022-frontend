@@ -5,13 +5,6 @@ import { Loading } from "../../Loading";
 import { CloseButton } from "../../CloseButton";
 import { FeedbackType, feedbackTypes } from "..";
 import { ScreenshotButton } from "../ScreenshotButton";
-import FeedbackRepository from "../../../repositories/FeedbackRepository";
-
-interface IFeedback {
-  type: string,
-  comment: string,
-  screenshot?: string,
-}
 
 interface FeedbackContentStepProps {
   feedbackType: FeedbackType;
@@ -40,11 +33,9 @@ export function FeedbackContentStep({
       type: feedbackType,
       comment,
       screenshot
-    } as IFeedback
+    }
 
-    const feedbackRepository = new FeedbackRepository;
-    let response = await feedbackRepository.create(feedback);
-    onFeedbackCreate(response);
+    onFeedbackCreate(feedback);
 
     setIsSendFeedback(false);
     onFeedbackSent();
