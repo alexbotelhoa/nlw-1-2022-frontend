@@ -24,8 +24,9 @@ export function FeedbackCard({
   const feedbackTypeInfo = feedbackTypes[feedbackCardInfo.type as FeedbackType];
 
   function infoDate() {
-    const data = moment(feedbackCardInfo.createdAt).format("DD/MM/YYYY - HH:mm");
-    return `Enviado em ${data}`;
+    // const data = moment(feedbackCardInfo.createdAt).format("DD/MM/YYYY - HH:mm");
+    // return `Enviado em ${data}`;
+    return ""
   }
   
   return (
