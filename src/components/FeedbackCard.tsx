@@ -1,4 +1,3 @@
-import * as moment from "moment";
 import { Info, Trash } from "phosphor-react";
 import { FeedbackType, feedbackTypes } from "./WidgetForm";
 
@@ -24,9 +23,10 @@ export function FeedbackCard({
   const feedbackTypeInfo = feedbackTypes[feedbackCardInfo.type as FeedbackType];
 
   function infoDate() {
-    // const data = moment(feedbackCardInfo.createdAt).format("DD/MM/YYYY - HH:mm");
-    // return `Enviado em ${data}`;
-    return ""
+    const data = feedbackCardInfo.createdAt.split('T')[0].split('-');
+    const time = feedbackCardInfo.createdAt.split('T')[1].split(':');
+    const dataTime = data[2] + "/" + data[1] + "/" + data[0] + " " + time[0] + ":" + time[1];
+    return `Enviado em ${dataTime}`;
   }
   
   return (
