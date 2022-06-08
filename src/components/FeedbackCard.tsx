@@ -43,7 +43,7 @@ export function FeedbackCard({
       </header>
       
       <textarea
-          className="w-64 h-24 text-sm placeholder-zinc-400 text-zinc-100 border-zinc-600 bg-transparent rounded-md focus:border-brand-500 focus:ring-brand-500 focus:ring-1 focus:outline-nome resize-none scrollbar scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin"
+          className="w-64 h-24 text-sm placeholder-zinc-400 text-zinc-100 border-zinc-600 bg-transparent rounded-md focus:border-brand-500 focus:ring-brand-500 focus:ring-1 focus:outline-nome resize-none scrollbar-thumb-zinc-700 scrollbar-track-transparent scrollbar-thin"
           value={feedbackCardInfo.comment}
           readOnly
         />
